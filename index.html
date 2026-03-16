@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak | Royal Ultimate Experience</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- GSAP Libs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div id="star-container"></div>
+    <div class="pattern-overlay"></div>
+    <div class="vignette"></div>
+    <canvas id="fx-layer"></canvas>
+
+    <!-- Lightbox -->
+    <div id="gallery-overlay" onclick="this.style.display='none'">
+        <span class="close-btn">&times;</span>
+        <img id="zoom-img" src="" alt="Gallery Full">
+    </div>
+
+    <header class="top-nav">
+        <div class="royal-text">ROYAL EID</div>
+        <i class="fas fa-moon royal-moon"></i>
+        <div class="music-toggle" onclick="toggleMusic()">
+            <button class="btn-gold-pulse"><i class="fas fa-play"></i> <span id="music-status">Serenity</span></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <p class="pre-title reveal-node">The Month of Divine Blessings</p>
+                <h1 class="main-title reveal-node">Eid Mubarak</h1>
+                <div class="ornament-gold reveal-node"></div>
+                <h2 class="friend-label reveal-node" id="hero-friend">Mere Jigri Dost Arman</h2>
+                <p class="premium-text reveal-node" id="typewriter">Wishing you a celebration filled with timeless joy, royal grace, and celestial peace.</p>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section class="section-wrapper">
+            <div class="section-header reveal-node">
+                <h2>Celebration Chronicles</h2>
+                <p>Capturing the divine essence of Eid through our lenses.</p>
+            </div>
+            <div class="gallery-wrap">
+                <!-- User Provided Photos (Placeholders) -->
+                <div class="photo-tile reveal-node" onclick="viewPhoto('assets/arman1.jpg')">
+                    <img src="assets/arman1.jpg" alt="Arman 1">
+                    <div class="tile-caption">
+                        <h4>Arman's Royal Portraits</h4>
+                        <p>Stepping into the festivities with style.</p>
+                    </div>
+                </div>
+                <div class="photo-tile reveal-node" onclick="viewPhoto('assets/arman2.jpg')">
+                    <img src="assets/arman2.jpg" alt="Arman 2">
+                    <div class="tile-caption">
+                        <h4>Golden Moments of Arman</h4>
+                        <p>A touch of tradition in every frame.</p>
+                    </div>
+                </div>
+                <div class="photo-tile reveal-node" onclick="viewPhoto('assets/arman3.jpg')">
+                    <img src="assets/arman3.jpg" alt="Arman 3">
+                    <div class="tile-caption">
+                        <h4>Arman's Celestial Grace</h4>
+                        <p>Reflecting the beauty of the Eid moon.</p>
+                    </div>
+                </div>
+                <div class="photo-tile reveal-node" onclick="viewPhoto('assets/arman4.jpg')">
+                    <img src="assets/arman4.jpg" alt="Arman 4">
+                    <div class="tile-caption">
+                        <h4>Arman's Timeless Elegance</h4>
+                        <p>Capturing memories that last a lifetime.</p>
+                    </div>
+                </div>
+                <!-- Original Assets -->
+                <div class="photo-tile reveal-node" onclick="viewPhoto('mosque.png')">
+                    <img src="mosque.png" alt="Grand Mosque">
+                    <div class="tile-caption">
+                        <h4>Spiritual Grandeur</h4>
+                        <p>A moonlit prayer at the heart of the city.</p>
+                    </div>
+                </div>
+                <div class="photo-tile reveal-node" onclick="viewPhoto('family.png')">
+                    <img src="family.png" alt="Eid Dinner">
+                    <div class="tile-caption">
+                        <h4>Graceful Gatherings</h4>
+                        <p>Traditional flavors shared with timeless love.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interaction & Countdown Section -->
+        <section class="section-wrapper">
+            <div class="glass-panel reveal-node">
+                <h3>The Lunar Countdown</h3>
+                <div class="countdown-grid">
+                    <div class="count-node"><span class="node-val" id="d">00</span><span class="node-tag">Days</span></div>
+                    <div class="count-node"><span class="node-val" id="h">00</span><span class="node-tag">Hrs</span></div>
+                    <div class="count-node"><span class="node-val" id="m">00</span><span class="node-tag">Min</span></div>
+                    <div class="count-node"><span class="node-val" id="s">00</span><span class="node-tag">Sec</span></div>
+                </div>
+
+                <hr class="royal-hr">
+
+                <h3>Craft Your Royal Wish</h3>
+                <div class="personalize-box">
+                    <input type="text" id="name-input" class="input-field" placeholder="Enter name of Arman's honored guest...">
+                    <div class="action-btns">
+                        <button class="btn-royal btn-gold" onclick="personalize()">Apply Majesty</button>
+                        <button class="btn-royal btn-emerald" onclick="fireworks()"><i class="fas fa-sparkles"></i> Celebrate</button>
+                        <button class="btn-royal btn-gold" onclick="shareMsg()">Share <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+
+                <hr class="royal-hr">
+
+                <h3>Celestial Catcher Game</h3>
+                <p class="sub-desc">Click the falling lanterns to earn celestial blessings.</p>
+                <div id="game-field">
+                    <div id="lantern" class="lantern-item" onclick="catchLantern()">
+                        <div class="lantern-glow"></div>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </div>
+                <div class="game-stats">
+                    <div class="stat-box"><span>Blessings</span><strong id="score">0</strong></div>
+                    <div class="stat-box"><span>Time Left</span><strong id="timer">30</strong>s</div>
+                    <button class="btn-royal-outline" onclick="startGame()">Commence</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="royal-footer">
+        <div class="footer-divider"></div>
+        <div class="social-links">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-whatsapp"></i>
+        </div>
+        <p>Designing Joy for a Blessed World</p>
+        <p class="copy">&copy; 2026 Royal Eid Studios. All Rights Reserved.</p>
+    </footer>
+
+    <audio id="bg-audio" loop preload="auto">
+        <source src="https://www.bensound.com/bensound-music/bensound-india.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
