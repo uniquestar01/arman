@@ -15,6 +15,9 @@ let isGameActive = false;
 let gameInterval;
 let pool = [];
 
+// --- Hearts (Dil) Container ---
+const heartContainer = document.getElementById('heart-container');
+
 // --- 1. Background Initialization ---
 function initBackground() {
     // Canvas Size
@@ -220,10 +223,50 @@ function renderParticles() {
     if (pool.length > 0) requestAnimationFrame(renderParticles);
 }
 
+// --- 7. Hearts (Dil) Logic ---
+function initHearts() {
+    setInterval(() => {
+        if(Math.random() > 0.7) spawnHeart();
+    }, 1000);
+}
+
+function spawnHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart-particle';
+    heart.innerHTML = '<i class="fas fa-heart"></i>';
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = Math.random() * 100 + "vh";
+    heart.style.scale = Math.random() * 0.5 + 0.5;
+    heartContainer.appendChild(heart);
+
+    gsap.to(heart, {
+        opacity: 0.8,
+        y: -100,
+        duration: 3,
+        ease: "power1.out",
+        onComplete: () => {
+            gsap.to(heart, { opacity: 0, duration: 1, onComplete: () => heart.remove() });
+        }
+    });
+
+    gsap.to(heart, {
+        rotation: Math.random() * 360,
+        duration: 4
+    });
+}
+
+function celebrateDil() {
+    for(let i=0; i<20; i++) {
+        setTimeout(spawnHeart, i * 100);
+    }
+    fireworks();
+}
+
 // --- Initialization ---
 window.addEventListener('DOMContentLoaded', () => {
     initBackground();
     runIntroSequence();
+    initHearts();
 });
 
 window.addEventListener('resize', () => {

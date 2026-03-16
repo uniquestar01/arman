@@ -18,6 +18,7 @@
 <body>
     <!-- Background Elements -->
     <div id="star-container"></div>
+    <div id="heart-container"></div>
     <div class="pattern-overlay"></div>
     <div class="vignette"></div>
     <canvas id="fx-layer"></canvas>
@@ -63,15 +64,15 @@
                         <p>Stepping into the festivities with style.</p>
                     </div>
                 </div>
-                <div class="photo-tile reveal-node" onclick="viewPhoto('https://images.unsplash.com/photo-1590076215667-875d4ef2d97e?w=800')">
-                    <img src="https://images.unsplash.com/photo-1590076215667-875d4ef2d97e?w=800" alt="Masjid Reflection">
+                <div class="photo-tile reveal-node" onclick="viewPhoto('assets/arman2.jpg')">
+                    <img src="assets/arman2.jpg" alt="Arman 2">
                     <div class="tile-caption">
-                        <h4>Royal Masjid Grace</h4>
+                        <h4>Golden Moments of Arman</h4>
                         <p>A touch of tradition in every frame.</p>
                     </div>
                 </div>
-                <div class="photo-tile reveal-node" onclick="viewPhoto('https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800')">
-                    <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=800" alt="Islamic Architecture">
+                <div class="photo-tile reveal-node" onclick="viewPhoto('assets/arman3.jpg')">
+                    <img src="assets/arman3.jpg" alt="Arman 3">
                     <div class="tile-caption">
                         <h4>Arman's Celestial Grace</h4>
                         <p>Reflecting the beauty of the Eid moon.</p>
@@ -106,7 +107,7 @@
                     <input type="text" id="name-input" class="input-field" placeholder="Enter name of Arman's honored guest...">
                     <div class="action-btns">
                         <button class="btn-royal btn-gold" onclick="personalize()">Apply Majesty</button>
-                        <button class="btn-royal btn-emerald" onclick="fireworks()"><i class="fas fa-sparkles"></i> Celebrate</button>
+                        <button class="btn-royal btn-emerald" onclick="celebrateDil()"><i class="fas fa-heart"></i> Celebrate</button>
                         <button class="btn-royal btn-gold" onclick="shareMsg()">Share <i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
