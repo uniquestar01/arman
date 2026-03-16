@@ -129,23 +129,6 @@ function shareMsg() {
     }
 }
 
-// --- 4. Countdown Timer ---
-function initCountdown() {
-    const target = new Date("March 30, 2026 00:00:00").getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const d = target - now;
-        if (d < 0) return;
-        const days = Math.floor(d / 86400000);
-        const hrs = Math.floor((d % 86400000) / 3600000);
-        const mins = Math.floor((d % 3600000) / 60000);
-        const secs = Math.floor((d % 60000) / 1000);
-        document.getElementById('d').innerText = String(days).padStart(2, '0');
-        document.getElementById('h').innerText = String(hrs).padStart(2, '0');
-        document.getElementById('m').innerText = String(mins).padStart(2, '0');
-        document.getElementById('s').innerText = String(secs).padStart(2, '0');
-    }, 1000);
-}
 
 // --- 5. Celestial Catcher Game ---
 function startGame() {
@@ -241,7 +224,6 @@ function renderParticles() {
 window.addEventListener('DOMContentLoaded', () => {
     initBackground();
     runIntroSequence();
-    initCountdown();
 });
 
 window.addEventListener('resize', () => {
